@@ -1,0 +1,120 @@
+<div class="container-fluid my-10">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card border-none">
+            <img
+              src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Images.png"
+              class="w-16 h-16 object-cover rounded-circle img-thumbnail"
+              alt="Imagen de perfil"
+            />
+          </div>
+        </div>
+        <div class="col-md-8 mt-4 mb-4">
+          <div class="d-flex justify-content-between align-items-center">
+            {{#if user}}
+              <h1>Bienvenido {{user.name}}</h1>
+            {{else}}
+              <h1>Bienvenido Invitado</h1>
+            {{/if}}
+            <h2>Permisos: {{user.role}}</h2>
+            <div>
+              <form action="/products" method="get">
+                <input
+                  type="submit"
+                  value="Back to profile"
+                  class="btn btn-primary"
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header text-center">
+          <h3><i class="fas fa-shopping-cart"></i> Cart ID: {{cart._id}}</h3>
+        </div>
+        <div class="card-body">
+          <div class="accordion" id="productAccordion">
+            {{#each cart.products}}
+              <div class="card">
+                <div class="card-body">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <img
+                      src="{{this.productId.thumbnails}}"
+                      alt="Product Image"
+                      width="50"
+                      height="50"
+                    />
+                    <h5 class="card-title ml-3">{{this.productId.title}}</h5>
+                    <div class="input-group" style="width: 150px;">
+                      <div class="input-group-prepend">
+                        <button
+                          class="btn btn-outline-secondary"
+                          type="button"
+                        >-</button>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control text-center"
+                        value="{{this.quantity}}"
+                        aria-label="Quantity"
+                        readonly
+                      />
+                      <div class="input-group-append">
+                        <button
+                          class="btn btn-outline-secondary"
+                          type="button"
+                        >+</button>
+                      </div>
+                    </div>
+                    <button class="btn btn-danger ml-3">Delete</button>
+                  </div>
+                  <div class="collapse" id="productCollapse{{@index}}">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><strong>Code:</strong>
+                        {{this.productId.code}}</li>
+                      <li class="list-group-item"><strong>Price:</strong>
+                        ${{this.productId.price}}</li>
+                      <li class="list-group-item"><strong>Stock:</strong>
+                        {{this.productId.stock}}</li>
+                      <li class="list-group-item"><strong>Category:</strong>
+                        {{this.productId.category}}</li>
+                      <li class="list-group-item">
+                        <strong>Thumbnails:</strong>
+                        {{#each this.productId.thumbnails}}
+                          <img
+                            src="{{this}}"
+                            alt="Thumbnail"
+                            width="40"
+                            height="40"
+                            class="d-inline-block thumbnail-spacing"
+                          />
+                        {{/each}}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a
+                    class="btn btn-link"
+                    data-toggle="collapse"
+                    href="#productCollapse{{@index}}"
+                    role="button"
+                    aria-expanded="false"
+                    aria-controls="productCollapse{{@index}}"
+                  >
+                    Show Details
+                  </a>
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
