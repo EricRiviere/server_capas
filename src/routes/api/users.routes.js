@@ -1,23 +1,21 @@
 import { Router } from "express";
 import userModel from "../../dao/models/user.model.js";
 import { authorization } from "../../utils/auth.js";
-import { passportCall, authToken } from "../../utils/passport.js";
+import { passportCall } from "../../utils/passport.js";
 import cartsDao from "../../dao/mdbManagers/carts.dao.js";
+import {
+  getUsersController,
+  getUserController,
+  deleteUserController,
+} from "../../controllers/usersControllers.js";
 
 const router = Router();
 
-router.get("/:userId", authToken, async (req, res) => {
-  const userId = req.params.userId;
-  try {
-    const user = await userModel.findById(userId);
-    if (!user) {
-      res.status(202).json({ message: "User not found with ID: " + userId });
-    }
-    res.json(user);
-  } catch (error) {
-    console.error("Error consulting user with ID: " + userId);
-  }
-});
+router.get("/", getUsersController);
+
+router.get("/:userId", getUserController);
+
+router.delete("/:userId", deleteUserController);
 
 router.post(
   "/:productId",

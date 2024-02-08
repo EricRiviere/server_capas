@@ -49,7 +49,7 @@ class CartDao {
       throw new Error("Product not found");
     }
     const productIndex = cart.products.findIndex(
-      (product) => product.productId.toString() === productId
+      (product) => product.productId._id.toString() === productId
     );
     if (productIndex === -1) {
       throw new Error("Product not found in the cart");

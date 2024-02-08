@@ -5,7 +5,7 @@ const privateKey = "CoderhouseBackendCourseSecretKeyJWT";
 
 //JSON Web Tokens JWT functinos:
 export const generateJWToken = (user) => {
-  return jwt.sign({ user }, privateKey, { expiresIn: "500s" });
+  return jwt.sign({ user }, privateKey, { expiresIn: "5000s" });
 };
 
 export const authToken = (req, res, next) => {
