@@ -50,28 +50,17 @@
                       height="50"
                     />
                     <h5 class="card-title ml-3">{{this.productId.title}}</h5>
-                    <div class="input-group" style="width: 150px;">
-                      <div class="input-group-prepend">
-                        <button
-                          class="btn btn-outline-secondary"
-                          type="button"
-                        >-</button>
-                      </div>
+                    <div class="input-group" style="width: 150px">
                       <input
-                        type="text"
-                        class="form-control text-center"
-                        value="{{this.quantity}}"
-                        aria-label="Quantity"
-                        readonly
+                          type="number"
+                          class="form-control text-center product-quantity"
+                          value="{{this.quantity}}"
+                          aria-label="Quantity"
+                          data-product-id="{{this.productId._id}}"
                       />
-                      <div class="input-group-append">
-                        <button
-                          class="btn btn-outline-secondary"
-                          type="button"
-                        >+</button>
-                      </div>
+                      <button class="btn btn-primary btn-confirm-quantity" data-cart-id="{{../cart._id}}" data-product-id="{{this.productId._id}}">Confirm Quantity</button>
                     </div>
-                    <button class="btn btn-danger ml-3">Delete</button>
+                    <button type="button" class="btn btn-danger btn-delete-product" data-cart-id="{{../cart._id}}" data-product-id="{{this.productId._id}}">Delete</button>
                   </div>
                   <div class="collapse" id="productCollapse{{@index}}">
                     <ul class="list-group list-group-flush">
@@ -118,3 +107,4 @@
     </div>
   </div>
 </div>
+<script src="/js/carts.js"></script>

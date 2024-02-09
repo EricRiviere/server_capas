@@ -1,11 +1,12 @@
+import config from "../config/config.js";
 import jwt from "jsonwebtoken";
 import passport from "passport";
 
-const privateKey = "CoderhouseBackendCourseSecretKeyJWT";
+const privateKey = config.privateKey;
 
 //JSON Web Tokens JWT functinos:
 export const generateJWToken = (user) => {
-  return jwt.sign({ user }, privateKey, { expiresIn: "5000s" });
+  return jwt.sign({ user }, privateKey, { expiresIn: "24h" });
 };
 
 export const authToken = (req, res, next) => {
@@ -42,7 +43,7 @@ export const passportCall = (strategy) => {
           .status(401)
           .send({ error: info.messages ? info.messages : info.toString() });
       }
-      console.log("Usuer obtained by strategy: ");
+      console.log("User obtained by strategy: ");
       console.log(user);
       req.user = user;
       next();

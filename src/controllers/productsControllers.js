@@ -34,7 +34,6 @@ export const postProductController = async (req, res) => {
   try {
     await postProduct(product);
     res.json(product);
-    res.redirect("/productManager");
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -16,6 +16,7 @@ import usersRouter from "./routes/api/users.routes.js";
 import userViewRouter from "./routes/views/users.views.routes.js";
 import jwtRouter from "./routes/api/jwt.routes.js";
 import githubLoginViewsRouter from "./routes/views/github-login.views.routes.js";
+import actionsRouter from "./routes/api/users.actions.routes.js";
 
 //Assets imports:
 import { Server } from "socket.io";
@@ -83,6 +84,7 @@ app.use("/api/products", ProductRouter);
 app.use("/api/carts", CartsRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/jwt", jwtRouter);
+app.use("/api/actions", actionsRouter);
 
 //ViewRouter
 app.use("/", viewsRouter);
